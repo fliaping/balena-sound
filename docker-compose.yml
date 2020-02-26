@@ -33,16 +33,16 @@ services:
       - /var/run/dbus:/host/run/dbus
       - spotifycache:/var/cache/raspotify
       - snapcast:/var/cache/snapcast
-  fleet-supervisor:
-    env_file: .env
-    build: ./fleet-supervisor
-    restart: on-failure
-    network_mode: host
-    privileged: true
-    ports:
-      - 3000:3000
-    labels:
-      io.balena.features.supervisor-api: 1
+  # fleet-supervisor:
+  #   env_file: .env
+  #   build: ./fleet-supervisor
+  #   restart: on-failure
+  #   network_mode: host
+  #   privileged: true
+  #   ports:
+  #     - 3000:3000
+  #   labels:
+  #     io.balena.features.supervisor-api: 1
   snapcast-server:
     env_file: .env
     build:
