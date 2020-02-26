@@ -3,6 +3,7 @@ services:
   bluetooth-audio:
     env_file: .env
     build: ./bluetooth-audio
+    image: balena-sound_bluetooth-audio:latest
     restart: always
     network_mode: host
     privileged: true
@@ -15,6 +16,7 @@ services:
   airplay:
     env_file: .env
     build: ./airplay
+    image: balena-sound_airplay:latest
     restart: always
     network_mode: host
     privileged: true
@@ -26,6 +28,7 @@ services:
   spotify:
     env_file: .env
     build: ./spotify
+    image: balena-sound_spotify:latest
     restart: always
     network_mode: host
     privileged: true
@@ -49,6 +52,7 @@ services:
       context: ./snapcast-server
       args:
         SNAPCAST_VERSION: 0.17.1
+    image: balena-sound_snapcast-server:latest
     restart: on-failure
     ports:
       - 1704:1704
@@ -61,6 +65,7 @@ services:
       context: ./snapcast-client
       args:
         SNAPCAST_VERSION: 0.17.1
+    image: balena-sound_snapcast-client:latest
     restart: on-failure
     network_mode: host
     privileged: true
