@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkfifo /var/cache/snapcast/snapfifo
+
 # Set the device broadcast name for Spotify
 if [[ -z "$BLUETOOTH_DEVICE_NAME" ]]; then
   BLUETOOTH_DEVICE_NAME=$(printf "balenaSound Spotify %s" $(hostname | cut -c -4))
