@@ -72,6 +72,15 @@ services:
     volumes:
       - ./snapcast-client/.asoundrc:/root/.asoundrc
       - snapcast:/var/cache/snapcast
+  wukong:
+    env_file: .env
+    image: xuping/wukong-robot-arm:python3.7
+    restart: always
+    devices: 
+      - /dev/snd:/dev/snd
+    volumes:
+      - ./wukong/.asoundrc:/root/.asoundrc
+      - snapcast:/var/cache/snapcast
 volumes:
   spotifycache:
     driver_opts:
