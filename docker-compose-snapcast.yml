@@ -1,0 +1,102 @@
+version: '2'
+services:
+  bluetooth-audio:
+    env_file: .env
+    build: ./bluetooth-audio
+    image: balena-sound_bluetooth-audio:latest
+    restart: always
+    network_mode: host
+    privileged: true
+    labels:
+      io.balena.features.dbus: 1
+    volumes:
+      - /var/run/dbus:/host/run/dbus
+      - bluetoothcache:/var/cache/bluetooth
+      - snapcast:/var/cache/snapcast
+  airplay:
+    env_file: .env
+    build: ./airplay
+    image: balena-sound_airplay:latest
+    restart: always
+    network_mode: host
+    privileged: true
+    labels:
+      io.balena.features.dbus: 1
+    volumes:
+      - /var/run/dbus:/host/run/dbus
+      - snapcast:/var/cache/snapcast
+  spotify:
+    env_file: .env
+    build: ./spotify
+    image: balena-sound_spotify:latest
+    restart: always
+    network_mode: host
+    privileged: true
+    volumes:
+      - /var/run/dbus:/host/run/dbus
+      - spotifycache:/var/cache/raspotify
+      - snapcast:/var/cache/snapcast
+  # fleet-supervisor:
+  #   env_file: .env
+  #   build: ./fleet-supervisor
+  #   restart: on-failure
+  #   network_mode: host
+  #   privileged: true
+  #   ports:
+  #     - 3000:3000
+  #   labels:
+  #     io.balena.features.supervisor-api: 1
+  snapcast-server:
+    env_file: .env
+    build:
+      context: ./snapcast-server
+      args:
+        SNAPCAST_VERSION: 0.17.1
+    image: balena-sound_snapcast-server:latest
+    restart: always
+    ports:
+      - 1704:1704
+      - 1705:1705
+    volumes:
+      - snapcast:/var/cache/snapcast
+  snapcast-client:
+    env_file: .env
+    build:
+      context: ./snapcast-client
+      args:
+        SNAPCAST_VERSION: 0.17.1
+    image: balena-sound_snapcast-client:latest
+    restart: always
+    network_mode: host
+    privileged: true
+    volumes:
+      - ./snapcast-client/.asoundrc:/root/.asoundrc
+      - snapcast:/var/cache/snapcast
+  wukong:
+    env_file: .env
+    image: xuping/wukong-robot-arm:python3.7
+    restart: always
+    environment: 
+      - LANG=C.UTF-8
+    command: ["/usr/bin/python3", "wukong.py"]
+    ports: 
+      - 5050:5000
+    devices: 
+      - /dev/snd:/dev/snd
+    volumes:
+      - ./wukong/.asoundrc:/root/.asoundrc
+      - ../wukong:/root/.wukong
+      - snapcast:/var/cache/snapcast
+volumes:
+  spotifycache:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  bluetoothcache:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  snapcast:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
