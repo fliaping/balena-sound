@@ -4,7 +4,7 @@ WORKDIR /usr/src
 
 RUN install_packages \
     ffmpeg \
-    alsa-utils
+    alsa-utils --no-install-recommends
 
 COPY sub_command/* /usr/src/
 COPY start.sh /usr/src/

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-mkfifo /var/cache/snapcast/snapfifo
-
 if [[ -z "$BLUETOOTH_DEVICE_NAME" ]]; then
   BLUETOOTH_DEVICE_NAME=$(printf "balenaSound %s" $(hostname | cut -c -4))
 fi
@@ -63,5 +61,6 @@ if [ -f "/var/cache/bluetooth/reconnect_device" ]; then
 fi
 
 sleep 2
+mkfifo /var/cache/snapcast/snapfifo
 printf "Device is discoverable as \"%s\"\n" "$BLUETOOTH_DEVICE_NAME"
 exec /usr/bin/bluealsa-aplay --pcm-buffer-time=1000000 00:00:00:00:00:00

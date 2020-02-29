@@ -21,17 +21,6 @@ services:
     volumes:
       - /var/run/dbus:/host/run/dbus
       - /run/sound/airplay:/var/cache/snapcast
-  spotify:
-    env_file: .env
-    build: ./spotify
-    image: balena-sound_spotify:latest
-    restart: always
-    network_mode: host
-    privileged: true
-    volumes:
-      - /var/run/dbus:/host/run/dbus
-      - spotifycache:/var/cache/raspotify
-      - /run/sound/spotify:/var/cache/snapcast
   wukong:
     env_file: .env
     image: xuping/wukong-robot-arm:python3.7
@@ -48,9 +37,4 @@ services:
       - ../wukong:/root/.wukong
       - /run/sound/wukong:/var/cache/snapcast
 volumes:
-  spotifycache:
   bluetoothcache:
-  snapcast:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
