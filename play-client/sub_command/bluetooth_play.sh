@@ -1,2 +1,11 @@
 #!/bin/bash
-ffplay -f s16le -ar 44.1k -ac 2 /var/cache/snapcast/snapfifo
+FILE=/var/cache/snapcast/snapfifo
+
+while sleep 3; do
+    if [ -f "$FILE" ]; then
+        echo "$FILE exist"
+        ffplay -f s16le -ar 44.1k -ac 2 $FILE
+    else 
+        echo "$FILE does not exist, wait..."
+    fi
+done
