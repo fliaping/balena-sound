@@ -36,5 +36,14 @@ services:
       - ./wukong/.asoundrc:/root/.asoundrc
       - ../wukong:/root/.wukong
       - /run/sound/wukong:/var/cache/snapcast
+  play_client:
+    env_file: .env
+    image: xuping/play-client:latest
+    restart: always
+    devices: 
+      - /dev/snd:/dev/snd
+    volumes:
+      - ./play-client/.asoundrc:/root/.asoundrc
+      - /run/sound:/run/sound
 volumes:
   bluetoothcache:

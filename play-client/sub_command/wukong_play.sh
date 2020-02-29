@@ -1,5 +1,5 @@
 #!/bin/bash
-FILE=/var/cache/snapcast/snapfifo
+FILE=/run/sound/wukong/snapfifo
 
 while sleep 3; do
     if [ -f "$FILE" ]; then
