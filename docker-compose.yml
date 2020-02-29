@@ -80,6 +80,7 @@ services:
       - /dev/snd:/dev/snd
     volumes:
       - ./wukong/.asoundrc:/root/.asoundrc
+      - ../wukong:/root/.wukong
       - snapcast:/var/cache/snapcast
 volumes:
   spotifycache:
