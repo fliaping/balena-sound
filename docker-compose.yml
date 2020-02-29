@@ -76,6 +76,9 @@ services:
     env_file: .env
     image: xuping/wukong-robot-arm:python3.7
     restart: always
+    command: ["/usr/bin/python3", "wukong.py"]
+    ports: 
+      - 5000:5000
     devices: 
       - /dev/snd:/dev/snd
     volumes:
