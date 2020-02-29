@@ -1,6 +1,10 @@
-FROM linuxserver/ffmpeg:latest
+FROM balenalib/raspberrypi3-debian:buster
 
 WORKDIR /usr/src
+
+RUN install_packages \
+    ffmpeg \
+    alsa-utils
 
 COPY sub_command/* /usr/src/
 COPY start.sh /usr/src/
