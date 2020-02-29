@@ -1,7 +1,31 @@
 pcm.!default {
-	type plug
-	slave.pcm rate44100Hz
+  type asym
+  capture.pcm "mic"
+  playback.pcm "rate44100Hz"
 }
+
+
+pcm.mic {
+ type plug
+ slave {
+  pcm "dsnooper"
+ }
+}
+
+pcm.dsnooper {
+    type dsnoop
+    ipc_key 1024
+    ipc_key_add_uid false
+    ipc_perm 0666
+    slave {
+      pcm "hw:CARD=CameraB409241,DEV=0"
+      format S16_LE  # format definition
+      rate 16000    # rate definition
+      channels 4
+      period_time 100000
+    }
+}
+
 
 pcm.rate44100Hz {
 	type rate
