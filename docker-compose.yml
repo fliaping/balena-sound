@@ -74,5 +74,14 @@ services:
       - snapcast:/var/cache/snapcast
 volumes:
   spotifycache:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
   bluetoothcache:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
   snapcast:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
