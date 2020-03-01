@@ -8,6 +8,7 @@ fi
 # Use pipe output if multi room is enabled
 # Don't pipe for Pi 1 family devices since snapcast-server is disabled by default
 if [[ -z $DISABLE_MULTI_ROOM ]] && [[ $BALENA_DEVICE_TYPE != "raspberry-pi" ]]; then
+  rm /var/cache/snapcast/snapfifo
   SHAIRPORT_BACKEND="-o pipe -- /var/cache/snapcast/snapfifo"
 fi
 
