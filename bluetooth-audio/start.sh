@@ -61,6 +61,13 @@ if [ -f "/var/cache/bluetooth/reconnect_device" ]; then
 fi
 
 sleep 2
-mkfifo /var/cache/snapcast/snapfifo
+FILE=/var/cache/snapcast/snapfifo
+if [ -f "$FILE" ]; then
+    echo "$FILE exist, skip"
+else
+    mkfifo $FILE
+    echo "$FILE created"
+fi
+
 printf "Device is discoverable as \"%s\"\n" "$BLUETOOTH_DEVICE_NAME"
 exec /usr/bin/bluealsa-aplay --pcm-buffer-time=1000000 00:00:00:00:00:00
