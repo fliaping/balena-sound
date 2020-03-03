@@ -42,8 +42,8 @@ while sleep 3; do
   PROCESS_3_STATUS=$?
   # If the greps above find anything, they exit with 0 status
   # If they are not both 0, then something is wrong
-  if [ $PROCESS_1_STATUS -ne 0 -o $PROCESS_2_STATUS -ne 0 -o $PROCESS_3_STATUS -ne 0]; then
-    echo "One of the processes has already exited."
+  if [ $PROCESS_1_STATUS -ne 0 -o $PROCESS_2_STATUS -ne 0 -o $PROCESS_3_STATUS -ne 0 ]; then
+    echo "One of the processes has already exited. airplay_play:$PROCESS_1_STATUS, bluetooth_play:$PROCESS_2_STATUS, wukong_play:$PROCESS_3_STATUS"
     exit 1
   fi
 done
