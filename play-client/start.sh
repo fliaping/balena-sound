@@ -4,7 +4,7 @@ chmod +x ./bluetooth_play.sh
 chmod +x ./wukong_play.sh
 
 # Start the first process
-./airplay_play.sh -D
+./airplay_play.sh &
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start my_first_process: $status"
@@ -12,7 +12,7 @@ if [ $status -ne 0 ]; then
 fi
 
 # Start the second process
-./bluetooth_play.sh -D
+./bluetooth_play.sh &
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start my_second_process: $status"
@@ -20,7 +20,7 @@ if [ $status -ne 0 ]; then
 fi
 
 # Start the third process
-./wukong_play.sh -D
+./wukong_play.sh &
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start my_second_process: $status"
