@@ -6,7 +6,8 @@ while sleep 3; do
         echo "$FILE exist"
         chmod +x ./create_fifo_with_size
         ./create_fifo_with_size.sh $FILE 8192
-        ffplay -f s16le -ar 44.1k -ac 2 $FILE -autoexit -nodisp
+        # ffplay -f s16le -ar 44.1k -ac 2 $FILE -autoexit -nodisp
+        play -t raw -r 44.1k -e signed -b 16 -c 2 $FILE
     else 
         echo "$FILE does not exist, wait..."
     fi
