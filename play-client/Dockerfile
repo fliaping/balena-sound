@@ -10,6 +10,4 @@ COPY sub_command/* /usr/src/
 COPY start.sh /usr/src/
 RUN chmod +x /usr/src/start.sh
 
-COPY ../create_fifo_with_size.sh /usr/src/create_fifo_with_size.sh
-
 CMD [ "/bin/bash", "/usr/src/start.sh" ]
