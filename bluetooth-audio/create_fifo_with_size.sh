@@ -11,7 +11,7 @@ F_GETPIPE_SZ = 1032  # Linux 2.6.35+
 
 def change_fifo_size(fifo, size):
     try:
-        print("Checking fifo file ...")
+        print("change fifo file:"+fifo+" to size:"+size)
         fifo_fd = os.open(fifo, os.O_RDONLY|os.O_NONBLOCK)
         print(fifo_fd)
         print("Pipe size            : "+ str(fcntl.fcntl(fifo_fd, F_GETPIPE_SZ)))
@@ -23,6 +23,7 @@ def change_fifo_size(fifo, size):
 
 def create_fifo_file(fifo):
     try:
+        print("create fifo file:" + fifo)
         os.mkfifo(fifo)
     except Exception as e:
         print ("Unable to create fifo size, error: "+ str(e))
