@@ -15,7 +15,7 @@ def change_fifo_size(fifo, size):
         fifo_fd = os.open(fifo, os.O_RDONLY|os.O_NONBLOCK)
         print(fifo_fd)
         print("Pipe size            : "+ str(fcntl.fcntl(fifo_fd, F_GETPIPE_SZ)))
-        fcntl.fcntl(fifo_fd, F_SETPIPE_SZ, size)
+        fcntl.fcntl(fifo_fd, F_SETPIPE_SZ, int(size))
         print("Pipe (modified) size : "+ str(fcntl.fcntl(fifo_fd, F_GETPIPE_SZ)))
         os.close(fifo_fd)
     except Exception as e:
