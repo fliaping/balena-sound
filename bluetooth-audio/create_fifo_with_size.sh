@@ -4,6 +4,7 @@
 
 import os
 import fcntl
+import sys
 
 F_SETPIPE_SZ = 1031  # Linux 2.6.35+
 F_GETPIPE_SZ = 1032  # Linux 2.6.35+
