@@ -32,4 +32,6 @@ RUN chmod +x /usr/src/start.sh
 
 COPY .asoundrc /root/.asoundrc
 
+COPY ../create_fifo_with_size.sh /usr/src/create_fifo_with_size.sh
+
 CMD [ "/bin/bash", "/usr/src/start.sh" ]

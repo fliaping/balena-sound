@@ -65,7 +65,8 @@ FILE=/var/cache/snapcast/snapfifo
 if [ -f "$FILE" ]; then
     echo "$FILE exist, skip"
 else
-    mkfifo $FILE
+    chmod +x ./create_fifo_with_size
+    ./create_fifo_with_size.sh $FILE 8192
     echo "$FILE created"
 fi
 
