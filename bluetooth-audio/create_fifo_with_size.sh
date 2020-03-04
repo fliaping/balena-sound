@@ -22,7 +22,7 @@ def change_fifo_size(fifo, size):
 
 def create_fifo_file(fifo):
     try:
-    os.mkfifo(fifo)
+        os.mkfifo(fifo)
     except Exception as e:
         print ("Unable to create fifo size, error: "+ str(e))
 
